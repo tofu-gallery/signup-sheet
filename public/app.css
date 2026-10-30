@@ -1,0 +1,843 @@
+/* Sign-up sheet: the one stylesheet. Phone first: one column of at most 36rem, body 17px, every control 44px or more,
+   nothing wider than the screen from 320px up. The memorable thing is the date: each date is a page torn from a wall
+   calendar (month band, large day number, weekday), and everything on a sheet hangs from those dates. */
+
+:root {
+  color-scheme: light;
+  --paper: #ffffff;
+  --ink: #1e293b;
+  --muted: #475569;
+  --action: #2457a7;
+  --action-dark: #1b4286;
+  --strip: #edf3fc;
+  --ok: #236342;
+  --ok-paper: #e9f3ed;
+  --rule: #d8dfe8;
+  --field-edge: #64748b;
+  --error: #a3261b;
+  --error-paper: #fbeeec;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 17px/1.5 var(--font);
+  overflow-wrap: anywhere;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+main,
+.top,
+.foot {
+  max-width: 36rem;
+  margin: 0 auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+main {
+  padding-bottom: 32px;
+}
+
+h1 {
+  font-size: 30px;
+  line-height: 1.2;
+  margin: 8px 0 8px;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-size: 21px;
+  line-height: 1.3;
+  margin: 28px 0 10px;
+}
+
+h3 {
+  font-size: 18px;
+  line-height: 1.35;
+  margin: 20px 0 8px;
+}
+
+p {
+  margin: 0 0 10px;
+}
+
+a {
+  color: var(--action);
+  text-underline-offset: 2px;
+}
+
+a:hover {
+  color: var(--action-dark);
+}
+
+:focus-visible {
+  outline: 3px solid var(--action);
+  outline-offset: 2px;
+}
+
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip {
+  position: absolute;
+  left: -10000px;
+}
+
+.skip:focus {
+  left: 8px;
+  top: 8px;
+  background: var(--paper);
+  padding: 8px 12px;
+  z-index: 2;
+}
+
+/* The navigation: a plain row of links. */
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 18px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 12px;
+}
+
+.top a,
+.top button.link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 16px;
+}
+
+.top .home {
+  font-weight: 700;
+  color: var(--ink);
+  text-decoration: none;
+  margin-right: auto;
+}
+
+.foot {
+  border-top: 1px solid var(--rule);
+  padding-top: 16px;
+  padding-bottom: 40px;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.foot p {
+  margin-bottom: 6px;
+}
+
+/* Group name above a sheet's title. */
+.group {
+  color: var(--muted);
+  font-size: 16px;
+  margin: 12px 0 0;
+}
+
+.description p {
+  white-space: pre-line;
+}
+
+.place-line {
+  color: var(--muted);
+}
+
+/* Notices and errors. */
+.notices {
+  margin: 12px 0 16px;
+}
+
+.notice {
+  border-left: 4px solid var(--action);
+  background: var(--strip);
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  border-radius: 0 6px 6px 0;
+}
+
+.notice.done {
+  border-color: var(--ok);
+  background: var(--ok-paper);
+}
+
+.notice.error {
+  border-color: var(--error);
+  background: var(--error-paper);
+}
+
+.notice p:last-child {
+  margin-bottom: 0;
+}
+
+.sentence {
+  margin-top: 32px;
+}
+
+.sentence p:first-child {
+  font-size: 20px;
+}
+
+/* The date strip: a wall-calendar page and the date's words. */
+.when {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: var(--strip);
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin: 28px 0 0;
+  font-size: 17px;
+  font-weight: 400;
+}
+
+.cal {
+  flex: none;
+  width: 3.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  text-align: center;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 7px;
+  overflow: hidden;
+  line-height: 1.15;
+}
+
+.cal .mon {
+  background: var(--action);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 3px 0 2px;
+}
+
+.cal .num {
+  font-size: 28px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  padding-top: 2px;
+}
+
+.cal .wd {
+  font-size: 13px;
+  color: var(--muted);
+  padding-bottom: 4px;
+}
+
+.what {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding-top: 2px;
+}
+
+.what .day {
+  font-weight: 700;
+}
+
+.what .times,
+.what .label,
+.what .place {
+  color: var(--ink);
+}
+
+.what .place {
+  color: var(--muted);
+}
+
+.when.is-cancelled .day {
+  text-decoration: line-through;
+}
+
+/* A cancelled date goes grey, so the eye passes over it: nothing happens that day. */
+.when.is-cancelled {
+  background: #f1f5f9;
+}
+
+.when.is-cancelled .cal .mon {
+  background: var(--muted);
+}
+
+.tag {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.tag.cancelled {
+  color: var(--error);
+  border-color: var(--error);
+}
+
+.tag.ok {
+  color: var(--ok);
+  border-color: var(--ok);
+}
+
+.tag.soon {
+  color: var(--action);
+  border-color: var(--action);
+}
+
+/* A date's places. */
+.slots {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 calc(3.4rem + 26px);
+}
+
+.slot {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 4px 12px;
+  align-items: start;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.slot:last-child {
+  border-bottom: 0;
+}
+
+/* Everything in a place spans the row, except its Take it button beside the name. */
+.slot > * {
+  grid-column: 1 / -1;
+}
+
+.slot > .slot-main {
+  grid-column: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.slot > .take {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: center;
+}
+
+.slot-name {
+  font-weight: 700;
+}
+
+.slot-description,
+.count {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.waitlist-head {
+  font-weight: 600;
+  margin: 6px 0 0;
+}
+
+.send {
+  color: var(--muted);
+}
+
+.slot .mine {
+  color: var(--ok);
+  font-weight: 600;
+}
+
+/* Green means confirmed, and only that: a place on the waitlist reads in the text colour. */
+.slot .mine.waiting,
+.done-line.waiting {
+  color: var(--ink);
+}
+
+.people {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+}
+
+.people li {
+  padding: 2px 0;
+}
+
+.people .note {
+  color: var(--muted);
+}
+
+.people .note::before {
+  content: "\2014\00a0";
+}
+
+/* On a phone the places use the whole width, Take it still beside the place's name; only below 360px does it go under. */
+@media (max-width: 400px) {
+  .slots {
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 359px) {
+  .slot {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .slot > .take {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: start;
+  }
+}
+
+/* The first screen of a sheet: where the next open place is. */
+.lead {
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin: 16px 0;
+}
+
+.lead p {
+  margin-bottom: 8px;
+}
+
+.lead .actions {
+  margin-top: 4px;
+}
+
+.mine-list {
+  margin: 0 0 8px;
+  padding-left: 20px;
+}
+
+/* Buttons and links that look like them. */
+button,
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 9px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--action);
+  font: 600 17px/1.2 var(--font);
+  text-decoration: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+.primary {
+  background: var(--action);
+  color: #fff;
+}
+
+.primary:hover {
+  background: var(--action-dark);
+  color: #fff;
+}
+
+.secondary {
+  background: var(--paper);
+  color: var(--action);
+}
+
+.danger {
+  background: var(--paper);
+  color: var(--error);
+  border-color: var(--error);
+}
+
+.quiet,
+button.link {
+  background: none;
+  border-color: transparent;
+  color: var(--action);
+  text-decoration: underline;
+  padding-left: 0;
+  padding-right: 0;
+  font-weight: 400;
+  min-width: 44px;
+}
+
+/* A disabled button reads as "not now", in full contrast, never as a faded, broken one. */
+button:disabled {
+  cursor: not-allowed;
+  color: var(--muted);
+  background: #f1f5f9;
+  border-color: var(--rule);
+}
+
+form[data-sent] button:disabled {
+  cursor: progress;
+}
+
+/* Links that stand on their own (not inside a sentence) are 44px tall, like every other control. */
+a.go,
+.foot a,
+.actions > a:not(.button),
+.person-line > a,
+.what > a,
+.send a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.send a {
+  padding: 0 6px;
+}
+
+/* A short name ("Mike") is still a 44px-wide target; a sheet's link at the start of a person's meta line too. */
+.person-line > a {
+  min-width: 44px;
+}
+
+.meta > a:first-child {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.danger-link {
+  color: var(--error);
+}
+
+.danger-link:hover {
+  color: var(--error);
+}
+
+/* The things that delete or remove, apart from everything else on the page. */
+.danger-zone {
+  margin-top: 32px;
+  padding-top: 16px;
+  border-top: 1px solid var(--rule);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin: 8px 0;
+}
+
+form.inline {
+  display: inline;
+  margin: 0;
+}
+
+/* Forms. */
+.stack {
+  margin: 12px 0 20px;
+}
+
+.field {
+  margin: 0 0 16px;
+}
+
+.field label,
+fieldset legend {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 15px;
+  margin: 0 0 6px;
+}
+
+.field-error {
+  color: var(--error);
+  font-weight: 600;
+  margin: 0 0 6px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="time"],
+input[type="password"],
+input[type="number"],
+select,
+textarea {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  padding: 9px 11px;
+  border: 1px solid var(--field-edge);
+  border-radius: 7px;
+  background: var(--paper);
+  color: var(--ink);
+  font: 17px/1.4 var(--font);
+}
+
+textarea {
+  resize: vertical;
+}
+
+.has-error input,
+.has-error textarea,
+.has-error select {
+  border-color: var(--error);
+  border-width: 2px;
+}
+
+.field.check {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.field.check input,
+.choice input {
+  width: 24px;
+  height: 24px;
+  margin: 10px 0 0;
+  flex: none;
+  accent-color: var(--action);
+}
+
+.field.check label {
+  font-weight: 400;
+  min-height: 44px;
+  padding-top: 10px;
+  flex: 1;
+}
+
+.field.check .hint,
+.choice .hint {
+  display: block;
+}
+
+fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0 0 16px;
+  min-width: 0;
+}
+
+.choice {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  min-height: 44px;
+  padding: 0 0 6px;
+}
+
+.choice span {
+  padding-top: 10px;
+}
+
+.hp {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Ready-made messages and private links. */
+.share,
+.linkbox {
+  margin: 12px 0 18px;
+}
+
+.share label,
+.linkbox label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+/* A message shows whole, its link at the end included: the box fits its text where the browser can, and its rows are
+   counted for a 320px phone where it cannot. */
+textarea.message {
+  background: #f8fafc;
+  font-size: 16px;
+  field-sizing: content;
+  max-height: 22em;
+}
+
+input.link {
+  font-size: 16px;
+  background: #f8fafc;
+}
+
+.js .nojs {
+  display: none;
+}
+
+.private {
+  border: 2px solid var(--action);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin: 18px 0;
+}
+
+.private h2 {
+  margin-top: 4px;
+}
+
+.done-line {
+  color: var(--ok);
+  font-weight: 700;
+  font-size: 20px;
+}
+
+/* Lists the organizer reads down. */
+.rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.rows > li {
+  border-bottom: 1px solid var(--rule);
+  padding: 12px 0;
+}
+
+.rows > li:last-child {
+  border-bottom: 0;
+}
+
+.meta {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+details {
+  margin: 6px 0;
+}
+
+details > summary {
+  display: list-item;
+  min-height: 44px;
+  padding: 10px 0;
+  cursor: pointer;
+  color: var(--action);
+  font-weight: 600;
+}
+
+details[open] > summary {
+  margin-bottom: 4px;
+}
+
+.box {
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin: 12px 0;
+}
+
+.box h2:first-child,
+.box h3:first-child {
+  margin-top: 0;
+}
+
+.status-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* A date's or a place's changes, folded under one button: one whole row per change, deleting last. */
+.menu {
+  list-style: none;
+  margin: 0 0 8px;
+  padding: 0;
+  border-top: 1px solid var(--rule);
+}
+
+.menu li {
+  border-bottom: 1px solid var(--rule);
+}
+
+.menu a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 4px;
+}
+
+/* Needs attention: each item's title stands out from the labels inside it. */
+.rows > li > h3:first-child {
+  margin-top: 0;
+}
+
+#attention .share > label {
+  font-weight: 400;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.person-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  align-items: baseline;
+}
+
+.person-line .name {
+  font-weight: 600;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 12px;
+}
+
+@media (max-width: 360px) {
+  .split {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sheets-list .title {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+@media print {
+  .top,
+  .foot,
+  form,
+  .actions {
+    display: none;
+  }
+}

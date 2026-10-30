@@ -1,0 +1,31 @@
+{
+  "format": "signup-sheet/1",
+  "group": { "name": "Maple Street neighbors", "organizer": { "name": "Frank" }, "dues": null },
+  "people": [],
+  "sheets": [
+    {
+      "slug": "potluck",
+      "title": "Fall potluck",
+      "timezone": "America/Chicago",
+      "description": "Bring a dish for 8.",
+      "place": "Community room, 12 Maple Street",
+      "names": "full",
+      "status": "open",
+      "noteLabel": "What you'll bring",
+      "noteRequired": true,
+      "dates": [
+        {
+          "date": "2026-11-21",
+          "weekday": "Sat",
+          "start": "18:00",
+          "end": "21:00",
+          "slots": [
+            { "label": "Mains", "capacity": 4 },
+            { "label": "Sides", "capacity": 4 },
+            { "label": "Desserts", "capacity": 3 }
+          ]
+        }
+      ]
+    }
+  ]
+}

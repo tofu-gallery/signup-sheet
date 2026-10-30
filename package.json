@@ -1,0 +1,34 @@
+{
+  "name": "signup-sheet",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A sign-up sheet for a group's turns, shifts, dishes and dues.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "build": "node scripts/tofu-migrate.mjs && next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test --test-concurrency=1 test/unit/*.test.ts test/db/*.test.ts",
+    "test:unit": "tsx --test test/unit/*.test.ts",
+    "test:db": "tsx --test --test-concurrency=1 test/db/*.test.ts",
+    "test:qa": "python3 -I qa/test_live_check.py"
+  },
+  "dependencies": {
+    "next": "16.4.3",
+    "pg": "8.23.1",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "@types/pg": "8.23.1",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3"
+  }
+}

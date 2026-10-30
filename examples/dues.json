@@ -1,0 +1,14 @@
+{
+  "format": "signup-sheet/1",
+  "from": "Club dues: a roster with no dates. The organizer ticks who paid; the app takes no payments.",
+  "group": {
+    "name": "Thursday chess club",
+    "organizer": { "name": "Mike", "contact": "hello@trytofu.ai" },
+    "dues": { "label": "Season dues", "amountCents": 4000 }
+  },
+  "people": [
+    { "key": "mike", "name": "Mike's family", "paid": true, "paidAmountCents": 4000, "paidNote": "cash Oct 30" },
+    { "key": "frank", "name": "Frank's family" }
+  ],
+  "sheets": []
+}

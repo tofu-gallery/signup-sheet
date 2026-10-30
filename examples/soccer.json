@@ -1,0 +1,40 @@
+{
+  "format": "signup-sheet/1",
+  "dryRun": true,
+  "group": {
+    "name": "U9 Tigers",
+    "organizer": { "name": "Mike", "contact": "hello@trytofu.ai" },
+    "dues": { "label": "Season dues", "amountCents": 4000 },
+    "from": "coach's email of Oct 27, signature line"
+  },
+  "people": [
+    { "key": "mike", "name": "Mike's family", "paid": true, "paidAmountCents": 4000, "paidNote": "cash Oct 30", "from": "dues list row 2" },
+    { "key": "frank", "name": "Frank's family", "from": "dues list row 3" }
+  ],
+  "sheets": [
+    {
+      "slug": "snacks",
+      "title": "Snack sign-up",
+      "timezone": "America/Los_Angeles",
+      "description": "One family brings fruit and water for 12 players.",
+      "place": "Lincoln Park, Field 3",
+      "names": "full",
+      "status": "draft",
+      "noteLabel": "What you'll bring",
+      "everyDate": [{ "label": "Bring snacks", "capacity": 1 }],
+      "dates": [
+        { "date": "2026-11-14", "weekday": "Sat", "start": "09:00", "end": "10:30", "label": "vs Eagles", "from": "schedule.png line 1" },
+        { "date": "2026-11-21", "weekday": "Sat", "start": "09:00", "end": "10:30" },
+        { "date": "2026-11-28", "weekday": "Sat", "start": "09:00", "end": "10:30" },
+        { "date": "2026-12-05", "weekday": "Sat", "start": "09:00", "end": "10:30" },
+        { "date": "2026-12-12", "weekday": "Sat", "start": "09:00", "end": "10:30" },
+        { "date": "2026-12-19", "weekday": "Sat", "start": "09:00", "end": "10:30" },
+        { "date": "2026-12-26", "weekday": "Sat", "start": "09:00", "end": "10:30" }
+      ],
+      "signups": [
+        { "date": "2026-11-14", "slot": "Bring snacks", "person": "mike", "note": "Oranges", "from": "paper sheet photo, row 1" },
+        { "date": "2026-11-21", "slot": "Bring snacks", "person": "frank", "from": "paper sheet photo, row 2" }
+      ]
+    }
+  ]
+}
